@@ -24,7 +24,12 @@ def userdata(request):
         age = int(request.POST.get("age"))
 
         try:
-            User.objects.get(email=email)
+            x = User.objects.get(email=email)
+            if x.status == 0:
+                x.status = 1
+                x.save()
+                messages.success(request, "Notification is activated")
+                return redirect('home')
             messages.error(request,"Email already exists")    
             return redirect('home')
         except:
@@ -93,17 +98,26 @@ def findcenter(request):
             return redirect('center')
     return redirect('center')
     
-
-
-
-
-
-# for i in range(1,len(con.keys())+1):
-#     for j in range(len(con[i])):
-#         for x in range(i,6):
-#             print(con[x][j])
-        
-#     print('\n')
-#     break
-
-
+def unsubscribe(request):
+    if request.method == "GET":
+        email = request.GET.get('email',None)
+        user = User.objects.filter(email=email)
+        print(email)
+        if email == None:
+            messages.error(request,"Please Provide Proper email")
+            return redirect('home')
+        elif user:
+            user = User.objects.get(email=email)
+            if user.status == 0:
+                messages.success(request,"Already Unsubscribed")
+                return redirect('home')
+            user.status = 0
+            user.save()
+            messages.success(request,"Successfully Unsubscribed from notification")
+            return redirect('home')
+        else:
+            messages.error(request,"Email is Not registered")
+            return redirect('home')
+        # return redirect('home')
+    else:
+        return redirect('home')

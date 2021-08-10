@@ -23,5 +23,6 @@ urlpatterns = [
     path('userdata',userdata, name="userdata"),
     path('center',center, name="center"),
     path('findcenter',findcenter, name="findcenter"),
+    path('unsubscribe',unsubscribe, name="unsubscribe"),
 
 ]
