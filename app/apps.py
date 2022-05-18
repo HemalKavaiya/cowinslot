@@ -4,6 +4,6 @@ from django.apps import AppConfig
 class AppConfig(AppConfig):
     name = 'app'
 
-    # def ready(self):
-    #     from notification import updater
-    #     updater.start()
+    def ready(self):
+        from notification import updater
+        updater.start()
