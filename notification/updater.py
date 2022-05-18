@@ -4,5 +4,5 @@ from notification import mail
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(mail.search, 'interval', minutes=5)
+    scheduler.add_job(mail.search, 'interval', minutes=1440)
     scheduler.start()

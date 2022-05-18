@@ -34,14 +34,8 @@ def search():
                             recipient_list = [i.email, ]
                             send_mail( subject, message, email_from, recipient_list )
 
-                            # print("\t", center["name"])
-                            # print("\t", center["address"])
-                            # print("\t Time: ", center["from"]+" TO "+center["to"])
-                            # print("\t Price: ", center["fee_type"])
-                            # print("\t Available Capacity: ", session["available_capacity"])
                             # if(session["vaccine"] != ''):
                             #     print("\t Vaccine: ", session["vaccine"])
                             # print("\n\n")
                         else:
-                            pass
-                            # print("No slot available right now")
+                            continue
